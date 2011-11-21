@@ -65,5 +65,13 @@ public class Operation extends Definition {
         }
         return retVal + ")";
     }
+
+    @Override
+    @SuppressWarnings({"EqualsWhichDoesntCheckParameterClass"})
+    public boolean equals(Object o)
+    {
+        Operation comp = (Operation)o;
+        return (this.toString().compareTo(comp.toString())==0);
+    }
     
 }

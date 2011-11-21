@@ -83,4 +83,12 @@ public class Procedure extends Operation {
         }
         return retVal + ")";
     }
+
+    @Override
+    @SuppressWarnings({"EqualsWhichDoesntCheckParameterClass"})
+    public boolean equals(Object o)
+    {
+        Procedure comp = (Procedure)o;
+        return (this.toString().compareTo(comp.toString())==0);
+    }
 }

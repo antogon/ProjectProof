@@ -73,4 +73,34 @@ public class OperationTest {
         result = myTest1.getEnsures();
         assertEquals(expResult==result, false);
     }
+
+    /**
+     * Test of toString method, of class Operation.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Operation instance = null;
+        String expResult = "";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of equals method, of class Operation.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Operation instance = new Operation("Operation Pop(x, y)",
+                "requires GreaterThan(Length(x), Zero())",
+                "ensures  And(Equals(x, All_But_First(#x)),"
+                + " Equals(y, First(#x)))"
+                );
+        boolean expResult = true;
+        boolean result = instance.equals(myTest);
+        assertEquals(expResult, result);
+    }
 }
