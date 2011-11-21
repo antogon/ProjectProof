@@ -62,4 +62,25 @@ public class Procedure extends Operation {
     public ProofTable generateProofTable(){
         return new ProofTable();
     }
+
+    /**
+     * <p>Converts this Procedure object into a string identical to the one
+     * used to create it.</p>
+     * @return a String representation of this Procedure
+     */
+    @Override
+    public String toString()
+    {
+        String retVal = "Procedure " + super.getName() + "(";
+        int commaCounter = 0;
+        for(String a : super.getArgs())
+        {
+            retVal += a;
+            if(commaCounter++ != super.getArgs().size()-1)
+            {
+                retVal += ", ";
+            }
+        }
+        return retVal + ")";
+    }
 }

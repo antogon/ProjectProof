@@ -44,5 +44,26 @@ public class Operation extends Definition {
     {
         return myEnsures;
     }
+
+    /**
+     * <p>Converts this Operation object into a string identical to the one
+     * used to create it.</p>
+     * @return a String representation of this Operation
+     */
+    @Override
+    public String toString()
+    {
+        String retVal = "Operation " + super.getName() + "(";
+        int commaCounter = 0;
+        for(String a : super.getArgs())
+        {
+            retVal += a;
+            if(commaCounter++ != super.getArgs().size()-1)
+            {
+                retVal += ", ";
+            }
+        }
+        return retVal + ")";
+    }
     
 }
