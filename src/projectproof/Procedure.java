@@ -55,25 +55,6 @@ public class Procedure extends Operation {
     }
 
     /**
-     * <p>Creates an instance of ProofTable for this Procedure and returns it.
-     * </p>
-     * @return a ProofTable created with this Procedure's instructions
-     */
-    public ProofTable generateProofTable(){
-        ProofTable p = new ProofTable();
-        ProofTableState q;
-        int stateCount = 0;
-        String header = "State " + stateCount + "\n=======";
-        Expression assumingE, confirmsE;
-        assumingE.substitute(null);
-        confirmsE.substitute(null);
-        String assuming = "Assuming:\n" + assumingE.toString();
-        String confirms = "Confirms:\n" + confirmsE.toString();
-        p.addState()
-        return p;
-    }
-
-    /**
      * <p>Converts this Procedure object into a string identical to the one
      * used to create it.</p>
      * @return a String representation of this Procedure

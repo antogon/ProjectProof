@@ -68,7 +68,10 @@ public class Expression {
                 {
                     expression = expression.substring(0, expression.length()-1);
                 }
-                myArgs.add(new Expression(expression));
+                if(expression.compareTo("")!=0)
+                {
+                    myArgs.add(new Expression(expression));
+                }
                 expression = "";
             }
             else
@@ -137,6 +140,33 @@ public class Expression {
             retVal.add(a);
         }
         return retVal;
+    }
+
+    /**
+     * <p>Gets an ArrayList of Expressions representing the variables, if any,
+     * used in this Expression or any Expressions contained within.</p>
+     * @return an ArrayList of variables in Expression form
+     */
+    public ArrayList<Expression> getVariableArgs()
+    {
+        ArrayList<Expression> retVal = new ArrayList<Expression>();
+        for(Expression ex : myArgs)
+        {
+            if(ex.isVariable())
+            {
+                retVal.add(ex);
+            }
+            else
+            {
+                retVal.addAll(ex.getVariableArgs());
+            }
+        }
+        return retVal;
+    }
+
+    public boolean isVariable()
+    {
+        return isVariable;
     }
     
     /**

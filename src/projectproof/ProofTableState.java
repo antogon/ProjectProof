@@ -11,12 +11,36 @@ package projectproof;
  */
 public class ProofTableState {
     String myStateHeader;
-    String myAssuming;
-    String myConfirms;
+    Expression myAssuming;
+    Expression myConfirms;
 
-    public ProofTableState(String header, String assuming, String confirms){
+    /**
+     * <p>Creates a new instance of ProofTableState containing the passed in
+     * header, the assumption Expression, and the confirms Expression.</p>
+     * @param header a String representing the header formatting
+     * @param assuming an Expression representing assumptions of this state
+     * @param confirms an Expression representing confirmations of this state
+     */
+    public ProofTableState(String header,
+            Expression assuming,
+            Expression confirms){
         myStateHeader = header;
         myAssuming = assuming;
         myConfirms = confirms;
+    }
+
+    /**
+     * <p>Returns a String representation of this ProofTableState with specific
+     *  formatting recognized by the ProofTable toString method.</p>
+     * @return a String representing this ProofTableState
+     * @see ProofTable
+     */
+    @Override
+    public String toString()
+    {
+        return myStateHeader + "Assuming:\n" +
+                myAssuming.toString() +
+                "\n\nConfirm:\n" + myConfirms.toString() +
+                "\n\n";
     }
 }

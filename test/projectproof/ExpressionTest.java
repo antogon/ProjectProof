@@ -56,11 +56,7 @@ public class ExpressionTest {
         map.put("#x", "#t");
         map.put("#y", "#z");
         Expression expResult = new Expression("Equals(q, Concatenate(MakeString(#t), #z))");
-        System.out.println(myTest); 
         Expression result = myTest.substitute(map);
-        System.out.println(expResult);
-        System.out.println(result);
-        
         assertEquals(expResult.toString(), result.toString());
     }
 
@@ -133,5 +129,31 @@ public class ExpressionTest {
         expResult = false;
         result = myTest1.equals(rhs);
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getVariableArgs method, of class Expression.
+     */
+    @Test
+    public void testGetVariableArgs() {
+        System.out.println("getVariableArgs");
+        ArrayList<Expression> testList = myTest.getVariableArgs();
+        ArrayList<Expression> expList = new ArrayList<Expression>();
+        expList.add(new Expression("y"));
+        expList.add(new Expression("#x"));
+        expList.add(new Expression("#y"));
+        assertEquals(expList, testList);
+    }
+
+    /**
+     * Test of isVariable method, of class Expression.
+     */
+    @Test
+    public void testIsVariable() {
+        System.out.println("isVariable");
+        Expression testTrue = new Expression("y");
+        Expression testFalse = new Expression("Zero()");
+        assertEquals(true, testTrue.isVariable());
+        assertEquals(false, testFalse.isVariable());
     }
 }

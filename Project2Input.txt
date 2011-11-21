@@ -13,8 +13,7 @@ Definition And(a, b)
 
 Operation Pop(x, y)
 	requires GreaterThan(Length(x), Zero())
-	ensures  And(Equals(x, All_But_First(#x)),
-	             Equals(y, First(#x)))
+	ensures  And(Equals(x, All_But_First(#x)), Equals(y, First(#x)))
 
 Operation Push(x, y)
 	requires LessThan(Length(x), MaxDepth())

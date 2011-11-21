@@ -58,7 +58,7 @@ public class Operation extends Definition {
         int commaCounter = 0;
         for(String a : super.getArgs())
         {
-            retVal += a;
+            retVal += (a==null)?"":a;
             if(commaCounter++ != super.getArgs().size()-1)
             {
                 retVal += ", ";

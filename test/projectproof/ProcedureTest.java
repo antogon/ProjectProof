@@ -45,21 +45,6 @@ public class ProcedureTest {
     }
 
     /**
-     * Test of generateProofTable method, of class Procedure.
-     */
-    @Test
-    public void testGenerateProofTable() {
-        System.out.println("generateProofTable");
-        Environment e = null;
-        Procedure instance = null;
-        ProofTable expResult = null;
-        ProofTable result = instance.generateProofTable();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of addInstruction method, of class Procedure.
      */
     @Test
