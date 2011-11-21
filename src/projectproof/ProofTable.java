@@ -4,14 +4,17 @@
  */
 package projectproof;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author antoniomalvagomes
  */
 public class ProofTable {
-    
+    ArrayList<ProofTableState> myStates;
     public ProofTable()
     {
+        myStates = new ArrayList<ProofTableState>();
     }
     
 }
