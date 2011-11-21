@@ -1,4 +1,5 @@
 build/*
+build/built-jar.properties
 dist/*
 bin/*
 nbproject/private/*
