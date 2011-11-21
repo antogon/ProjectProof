@@ -27,6 +27,7 @@ public class Expression {
     public Expression(String def)
     {
         def = def.replaceAll(" ", "");
+        def = def.trim();
         myArgs = new ArrayList<Expression>();
         Stack<String> parens = new Stack<String>();
         StringTokenizer shredder = new StringTokenizer(def,
