@@ -7,8 +7,8 @@ package projectproof;
 import java.util.ArrayList;
 
 /**
- *
- * @author antoniomalvagomes
+ * <p>A procedure is an Operation that has some code with it, stored in
+ * <code>myInstructions</code>.</p>
  */
 public class Procedure extends Operation {
 

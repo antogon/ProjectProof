@@ -11,8 +11,8 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 /**
- *
- * @author antoniomalvagomes
+ * <p>Expression represents something found in a requires or ensures clause. Has
+ * a name and some number of arguments, which are expressions.</p>
  */
 public class Expression {
     
