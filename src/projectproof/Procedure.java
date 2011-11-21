@@ -28,11 +28,22 @@ public class Procedure extends Operation {
         myInstructions = new ArrayList<Expression>();
     }
 
+    /**
+     * <p>Adds an instruction described by the String parameter to this
+     * Procedure.  Requires that the instructions be in the order in which
+     *   they are intended to be solved.</p>
+     * @param ins a String describing an instruction
+     */
     public void addInstruction(String ins)
     {
         myInstructions.add(new Expression(ins));
     }
 
+    /**
+     * <p>Returns a list of instructions in order of execution that defines
+     *   this Procedure.</p>
+     * @return an ArrayList of instructions, each represented as an Expression
+     */
     public ArrayList<Expression> getInstructions()
     {
         ArrayList<Expression> retVal = new ArrayList<Expression>();
@@ -42,7 +53,12 @@ public class Procedure extends Operation {
         }
         return retVal;
     }
-    
+
+    /**
+     * <p>Creates an instance of ProofTable for this Procedure and returns it.
+     * </p>
+     * @return a ProofTable created with this Procedure's instructions
+     */
     public ProofTable generateProofTable(){
         return new ProofTable();
     }
