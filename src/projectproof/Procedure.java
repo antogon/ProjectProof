@@ -60,7 +60,17 @@ public class Procedure extends Operation {
      * @return a ProofTable created with this Procedure's instructions
      */
     public ProofTable generateProofTable(){
-        return new ProofTable();
+        ProofTable p = new ProofTable();
+        ProofTableState q;
+        int stateCount = 0;
+        String header = "State " + stateCount + "\n=======";
+        Expression assumingE, confirmsE;
+        assumingE.substitute(null);
+        confirmsE.substitute(null);
+        String assuming = "Assuming:\n" + assumingE.toString();
+        String confirms = "Confirms:\n" + confirmsE.toString();
+        p.addState()
+        return p;
     }
 
     /**
