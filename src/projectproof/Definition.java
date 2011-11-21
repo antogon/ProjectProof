@@ -8,17 +8,23 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 /**
- *
- * @author antoniomalvagomes
+ * <p>Represents a definition, consisting of a name and its arguments (if
+ * applicable), such as {@code Get_Element_At()},
+ * {@code Subsequence()}, or {@code GreaterThan(a, b)}.</p>
  */
 public class Definition {
-    
+
     private String myName;
     private ArrayList<String> myArgs;
-    
+
     /**
-     * <p> Creates a <code>Definition</code> from a string of the format:<br/>
-     * Definition functionName(arg0, arg1, arg2, ...)</p>
+     * <p> Creates a {@code Definition} from a {@code String} beginning with the
+	 * word "Definition ", followed by its name and a comma-separated list of
+	 * its arguments. For example, a {@code Definition} could be created with
+	 * the format: <blockquote>
+	 * {@code Definition functionName(arg0, arg1, arg2, ..., arg<i>n</i>)},
+	 * </blockquote> where <i>n</i> is the number of arguments, and
+	 * "functionName" is the name of the this definition.</p>
      * @param def A string describing the Definition object to be created.
      */
     public Definition(String def)
@@ -42,20 +48,21 @@ public class Definition {
             }
         }
     }
-    
+
     /**
-     * <p>Returns the name of this Definition</p>
-     * @return the name of this Definition
+     * <p>Returns the name of this {@code Definition}</p>
+     * @return the name of this {@code Definition} object.
      */
     public String getName()
     {
         return myName;
     }
-    
+
     /**
-     * <p>Creates a copy of this Definition's list of arguments and returns it.
-     * </p>
-     * @return an <code>ArrayList</code> of arguments for this Definition
+     * <p>Returns a new {@code ArrayList} of {@code String}s containing this
+	 * {@code Definition}'s arguments.</p>
+     * @return A new {@code ArrayList} containing this {@code Definition}'s
+	 * arguments.
      */
     public ArrayList<String> getArgs()
     {
@@ -66,10 +73,13 @@ public class Definition {
         }
         return retVal;
     }
-    
+
     /**
-     * <p>Converts this Definition object into a string identical to the one
-     * used to create it.</p>
+     * <p>Converts this {@code Definition} object into a string identical to the
+	 * one used to create it in its constructor. Therefore, a {@code Definition}
+	 * named "newDefinition" with <i>n</i> arguments would have the form:
+	 * <blockquote>Definition newDefinition(arg1, arg2, ..., arg<i>n</i>)
+	 * </blockquote></p>
      * @return a String representation of this Definition
      */
     @Override
@@ -87,5 +97,5 @@ public class Definition {
         }
         return retVal + ")";
     }
-    
+
 }
