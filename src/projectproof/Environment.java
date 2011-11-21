@@ -66,10 +66,11 @@ public class Environment {
                     inputLine = fileScanner.nextLine();
                     if(inputLine.compareTo("begin")==0)
                     {
+                        inputLine = fileScanner.nextLine();
                         while(inputLine.compareTo("end")!=0)
                         {
-                            inputLine = fileScanner.nextLine();
                             p.addInstruction(inputLine);
+                            inputLine = fileScanner.nextLine();
                         }
                     }
                     myProcedures.add(p);
@@ -143,5 +144,65 @@ public class Environment {
      */
     public String getFilePath(){
         return myFilePath;
+    }
+
+    /**
+     * <p>Searches this Environment's recognized operations for one that
+     *  matches the passed Expression in both name and argument length.</p>
+     * @param ex an Expression for which the Environment will be searched
+     * @return an Operation with name and argument equivalent to <code>ex</code>
+     */
+    public Operation searchEnvironmentOps(Expression ex)
+    {
+        for(Operation o : myOperations)
+        {
+            if(o.getName().compareTo(ex.getName())==0 &&
+                    o.getArgs().size()==ex.getArgs().size()
+                    )
+            {
+                return o;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * <p>Searches this Environment's recognized procedures for one that
+     *  matches the passed Expression in both name and argument length.</p>
+     * @param ex an Expression for which the Environment will be searched
+     * @return a Procedure with name and argument equivalent to <code>ex</code>
+     */
+    public Procedure searchEnvironmentProcs(Expression ex)
+    {
+        for(Procedure o : myProcedures)
+        {
+            if(o.getName().compareTo(ex.getName())==0 &&
+                    o.getArgs().size()==ex.getArgs().size()
+                    )
+            {
+                return o;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * <p>Searches this Environment's recognized definitions for one that
+     *  matches the passed Expression in both name and argument length.</p>
+     * @param ex an Expression for which the Environment will be searched
+     * @return a Definition with name and argument equivalent to <code>ex</code>
+     */
+    public Definition searchEnvironmentDefs(Expression ex)
+    {
+        for(Definition o : myDefinitions)
+        {
+            if(o.getName().compareTo(ex.getName())==0 &&
+                    o.getArgs().size()==ex.getArgs().size()
+                    )
+            {
+                return o;
+            }
+        }
+        return null;
     }
 }

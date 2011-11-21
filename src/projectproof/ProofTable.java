@@ -4,19 +4,14 @@
  */
 package projectproof;
 
-import java.util.HashMap;
-
 /**
  *
  * @author antoniomalvagomes
  */
 public class ProofTable {
     
-    private HashMap<Integer, HashMap<Expression, Expression>> myTable;
-    
     public ProofTable()
     {
-        
     }
     
 }
