@@ -24,12 +24,12 @@ public class Definition {
     public Definition(String def)
     {
         myArgs = new ArrayList<String>();
-        StringTokenizer shred = new StringTokenizer(def, "(,) ", false);
+        StringTokenizer shredder = new StringTokenizer(def, "(,) ", false);
         String token;
         int wordCount = 0;
-        while(shred.hasMoreTokens())
+        while(shredder.hasMoreTokens())
         {
-            token = shred.nextToken();
+            token = shredder.nextToken();
             switch(wordCount++)
             {
                 case 0:
@@ -65,6 +65,27 @@ public class Definition {
             retVal.add(a);
         }
         return retVal;
+    }
+    
+    /**
+     * <p>Converts this Definition object into a string identical to the one
+     * used to create it.</p>
+     * @return a String representation of this Definition
+     */
+    @Override
+    public String toString()
+    {
+        String retVal = "Definition " + myName + "(";
+        int commaCounter = 0;
+        for(String a : myArgs)
+        {
+            retVal += a;
+            if(commaCounter++ != myArgs.size()-1)
+            {
+                retVal += ", ";
+            }
+        }
+        return retVal + ")";
     }
     
 }

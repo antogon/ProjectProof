@@ -1,0 +1,31 @@
+Definition Zero()
+Definition MaxDepth()
+Definition GreaterThan(a, b)
+Definition LessThan(a, b)
+Definition Length(a)
+Definition Equals(a, b)
+Definition Concatenate(a, b)
+Definition MakeString(a)
+Definition First(a)
+Definition All_But_First(a)
+Definition And(a, b)
+
+
+Operation Pop(x, y)
+	requires GreaterThan(Length(x), Zero())
+	ensures  And(Equals(x, All_But_First(#x)),
+	             Equals(y, First(#x)))
+
+Operation Push(x, y)
+	requires LessThan(Length(x), MaxDepth())
+	ensures  Equals(y, Concatenate(MakeString(#x), #y))
+
+
+Procedure ReplaceTop(a, b)
+	requires GreaterThan(Length(a), Zero())
+	ensures  Equals(a, Concatenate(MakeString(b), All_But_First(a)))
+begin
+	Pop(a, c)
+	Push(a, b)
+end
+

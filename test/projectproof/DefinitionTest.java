@@ -71,4 +71,18 @@ public class DefinitionTest {
         result = myTest1.getArgs();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of toString method, of class Definition.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        String expResult = "Definition Zero()";
+        String result = myTest.toString();
+        assertEquals(expResult, result);
+        expResult = "Definition GreaterThan(a, b)";
+        result = myTest1.toString();
+        assertEquals(expResult, result);
+    }
 }
