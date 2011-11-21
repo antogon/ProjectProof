@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 /**
- *
- * @author antoniomalvagomes
+ * <p>Represents a definition object, which is a name and a list of arguments.
+ * </p>
  */
 public class Definition {
     

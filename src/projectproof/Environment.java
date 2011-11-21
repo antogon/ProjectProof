@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
- * @author antoniomalvagomes
+ * The environment stores all of the definition objects, operations, and
+ * procedures from the input file.
  */
 public class Environment {
     

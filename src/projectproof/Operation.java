@@ -5,7 +5,8 @@
 package projectproof;
 
 /**
- *
+ * <p>Operation is a definition object that also has a requires and ensures
+ * clause. These are stored as expressions.</p>
  * @author antoniomalvagomes
  */
 public class Operation extends Definition {

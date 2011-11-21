@@ -56,9 +56,11 @@ public class ExpressionTest {
         map.put("#x", "#t");
         map.put("#y", "#z");
         Expression expResult = new Expression("Equals(q, Concatenate(MakeString(#t), #z))");
+        System.out.println(myTest); 
         Expression result = myTest.substitute(map);
         System.out.println(expResult);
         System.out.println(result);
+        
         assertEquals(expResult.toString(), result.toString());
     }
 
