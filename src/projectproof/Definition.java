@@ -87,5 +87,13 @@ public class Definition {
         }
         return retVal + ")";
     }
+
+    @Override
+    @SuppressWarnings({"EqualsWhichDoesntCheckParameterClass"})
+    public boolean equals(Object o)
+    {
+        Definition comp = (Definition)o;
+        return (this.toString().compareTo(comp.toString())==0);
+    }
     
 }

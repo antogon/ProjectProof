@@ -166,7 +166,7 @@ public class Expression {
     public boolean equals(Object rhs)
     {
         Expression comp = (Expression)rhs;
-        return (this.toString().compareTo(rhs.toString())==0);
+        return (this.toString().compareTo(comp.toString())==0);
     }
     
 }
