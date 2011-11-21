@@ -4,11 +4,15 @@
  */
 package projectproof;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author antoniomalvagomes
  */
 public class Procedure extends Operation {
+
+    private ArrayList<Expression> myInstructions;
     
     /**
      * <p>Creates a new Procedure object from a string definition descriptor, 
@@ -21,6 +25,22 @@ public class Procedure extends Operation {
     public Procedure(String def, String req, String ens)
     {
         super(def, req, ens);
+        myInstructions = new ArrayList<Expression>();
+    }
+
+    public void addInstruction(String ins)
+    {
+        myInstructions.add(new Expression(ins));
+    }
+
+    public ArrayList<Expression> getInstructions()
+    {
+        ArrayList<Expression> retVal = new ArrayList<Expression>();
+        for(Expression a : myInstructions)
+        {
+            retVal.add(a);
+        }
+        return retVal;
     }
     
     public ProofTable generateProofTable(){

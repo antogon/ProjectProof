@@ -57,12 +57,20 @@ public class Environment {
                 }
                 else if(inputLine.startsWith("Procedure"))
                 {
-                    myProcedures.add(
-                            new Procedure(inputLine,
+                    Procedure p = new Procedure(inputLine,
                                     fileScanner.nextLine(),
                                     fileScanner.nextLine()
-                                    )
-                            );
+                                    );
+                    inputLine = fileScanner.nextLine();
+                    if(inputLine.compareTo("begin")==0)
+                    {
+                        while(inputLine.compareTo("end")!=0)
+                        {
+                            inputLine = fileScanner.nextLine();
+                            p.addInstruction(inputLine);
+                        }
+                    }
+                    myProcedures.add(p);
                 }
             }
         }
