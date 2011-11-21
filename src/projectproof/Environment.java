@@ -10,23 +10,25 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * The environment stores all of the definition objects, operations, and
- * procedures from the input file.
+ * <p>Stores all definitions, operations, and procedures from the input file
+ * as their respective {@link Definition}, {@link Operation}, and
+ * {@link Procedure} objects.  Because there should only exist one
+ * {@code Environment}, this class is a {@code Singleton}.</p>
  */
 public class Environment {
-    
+
     private static Environment myInstance;
     private static String myFilePath;
     public ArrayList<Definition> myDefinitions;
     public ArrayList<Operation> myOperations;
     public ArrayList<Procedure> myProcedures;
-    
+
     /**
-     * <p>A private constructor for this Singleton Environment class.
-     *   Sets the internal member variable to an instance of this class.  
-     * Requires that the setFilePath function have been called first to set
-     *  the file that will be read in.</p>
-     * @param filePath a String path to a formal specification file
+     * <p>A private constructor for this {@code Singleton} class.
+     * Sets the internal member variable to an instance of this class.
+     * Requires that the {@code setFilePath} function be called beforehand in
+	 * order to set the file to be read in.</p>
+     * @param filePath the path to the formal specification file to be processed
      */
     private Environment(String filePath)
     {
@@ -79,10 +81,10 @@ public class Environment {
             System.out.println("The input file you requested was not found.");
         }
     }
-    
+
     /**
-     * <p>A public function that interfaces with the private constructor to 
-     * return an instance of the Environment singleton.</p>
+     * <p>Interfaces with the private constructor to return the instance of the
+	 * {@code Environment} Singleton.</p>
      * @return an instance of Environment after parsing
      */
     public static Environment getInstance()
@@ -93,68 +95,53 @@ public class Environment {
         }
         return myInstance;
     }
-    
+
     /**
-     * <p>Sets the path for the formal specification file to be read in.</p>
-     * @param fp a String representing the path to a formal specification file
+     * <p>Sets the path for the formal specification file to be read in and
+	 * processed.</p>
+     * @param inFilePath the path to the formal specification file to be
+	 * processed.
      */
-    public static void setFilePath(String fp)
-    {
-        myFilePath = fp;
+    public static void setFilePath(String inFilePath){
+        myFilePath = inFilePath;
     }
-    
+
     /**
-     * <p>Returns a copy of the list of definitions known to this Environment
-     * after parsing.</p>
-     * @return an ArrayList of Definitions known by this Environment
+     * <p>Returns a new {@code ArrayList} containing all {@link Definition}
+	 * objects known to this {@code Environment}</p>
+     * @return a new {@code ArrayList} of {@link Definition}s
+	 * known by this {@code Environment}
      */
-    public ArrayList<Definition> getDefinitions()
-    {
-        ArrayList<Definition> retVal = new ArrayList<Definition>();
-        for(Definition a : myDefinitions)
-        {
-            retVal.add(a);
-        }
-        return retVal;
+    public ArrayList<Definition> getDefinitions(){
+		return( new ArrayList<Definition>(myDefinitions) );
     }
-    
+
     /**
-     * <p>Returns a copy of the list of operations known to this Environment
-     * after parsing.</p>
-     * @return an ArrayList of Operations known by this Environment
+     * <p>Returns a new {@code ArrayList} containing all {@link Operation}
+	 * objects known to this {@code Environment}</p>
+     * @return a new {@code ArrayList} of {@link Operation}s
+	 * known by this {@code Environment}
      */
-    public ArrayList<Operation> getOperations()
-    {
-        ArrayList<Operation> retVal = new ArrayList<Operation>();
-        for(Operation a : myOperations)
-        {
-            retVal.add(a);
-        }
-        return retVal;
+    public ArrayList<Operation> getOperations(){
+		return(new ArrayList<Operation>(myOperations));
     }
-    
+
     /**
-     * <p>Returns a copy of the list of procedures known to this Environment
-     * after parsing.</p>
-     * @return an ArrayList of Procedures known by this Environment
+     * <p>Returns a new {@code ArrayList} containing all {@link Procedure}
+	 * objects known to this {@code Environment}</p>
+     * @return a new {@code ArrayList} of {@link Procedure}s
+	 * known by this {@code Environment}
      */
-    public ArrayList<Procedure> getProcedures()
-    {
-        ArrayList<Procedure> retVal = new ArrayList<Procedure>();
-        for(Procedure a : myProcedures)
-        {
-            retVal.add(a);
-        }
-        return retVal;
+    public ArrayList<Procedure> getProcedures(){
+		return(new ArrayList<Procedure>(myProcedures));
     }
-    
+
     /**
-     * <p>Returns a String representation of the path that the Environment
-     *  currently holds.</p>
-     * @return a filepath
+     * <p>Returns the filepath from which this {@code Environment} generates the
+	 * proof table</p>
+     * @return the filepath of the the input file
      */
-    public String getFilePath()
-    {
+    public String getFilePath(){
         return myFilePath;
     }
 }

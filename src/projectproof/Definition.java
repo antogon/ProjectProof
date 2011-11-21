@@ -20,12 +20,12 @@ public class Definition {
     /**
      * <p> Creates a {@code Definition} from a {@code String} beginning with the
 	 * word "Definition ", followed by its name and a comma-separated list of
-	 * its arguments. For example, a {@code Definition} could be created with
-	 * the format: <blockquote>
-	 * {@code Definition functionName(arg0, arg1, arg2, ..., arg<i>n</i>)},
-	 * </blockquote> where <i>n</i> is the number of arguments, and
-	 * "functionName" is the name of the this definition.</p>
-     * @param def A string describing the Definition object to be created.
+	 * its arguments. For example, a {@code Definition} called "functionName"
+	 * with <i>n</i> arguments could be created with the format: <blockquote>
+	 * <code>Definition functionName(arg<sub>0</sub>, arg<sub>1</sub>,
+	 * arg<sub>2</sub>, ..., arg<sub>n</sub>)</code>,</blockquote></p>
+     * @param def A properly-formatted, non-null {@code String} describing the
+	 * {@code Definition} object to be created.
      */
     public Definition(String def)
     {
@@ -78,9 +78,9 @@ public class Definition {
      * <p>Converts this {@code Definition} object into a string identical to the
 	 * one used to create it in its constructor. Therefore, a {@code Definition}
 	 * named "newDefinition" with <i>n</i> arguments would have the form:
-	 * <blockquote>Definition newDefinition(arg1, arg2, ..., arg<i>n</i>)
-	 * </blockquote></p>
-     * @return a String representation of this Definition
+	 * <blockquote><code>Definition newDefinition(arg<sub>1</sub>, arg<sub>2
+	 * </sub>, ..., arg<sub>n</sub>)</code></blockquote></p>
+     * @return a String representation of this Definition.
      */
     @Override
     public String toString()
@@ -98,10 +98,17 @@ public class Definition {
         return retVal + ")";
     }
 
+	/**
+	 * Tests for equality with another {@code Object}. For two
+	 * {@code Definition}s to be equal, their names must be identical, and they
+	 * must have the same set of arguments in the same order.
+	 * @param other the other object
+	 * @return {@code true} if this Definition is equal to {@code other}.
+	 */
     @Override
     @SuppressWarnings({"EqualsWhichDoesntCheckParameterClass"})
-    public boolean equals(Object o){
-        Definition comp = (Definition)o;
+    public boolean equals(Object other){
+        Definition comp = (Definition)other;
         return (this.toString().compareTo(comp.toString())==0);
     }
 }
