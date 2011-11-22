@@ -6,10 +6,10 @@
 package projectproof;
 
 /**
- * Represents one state of the procedure to be stored in the ProofTable.
+ * <p>Represents one state of the procedure to be stored in the ProofTable.
  * Each state has a header, enumerating the state.
  * Each state has an Asumming clause and a Confirms clause, represented as
- * expressions.
+ * expressions.</p>
  */
 public class ProofTableState {
     String myStateHeader;

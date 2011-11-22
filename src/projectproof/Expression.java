@@ -195,7 +195,14 @@ public class Expression {
         }
         return retVal + rightParen;
     }
-    
+
+    /**
+     * Tests for equality with another {@code Object}. For two
+     * {@code Expression}s to be equal, their names must be identical, and they
+     * must have the same set of arguments in the same order.
+     * @param other the other object
+     * @return {@code true} if this Expression is equal to {@code other}.
+     */
     @Override
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     public boolean equals(Object rhs)
