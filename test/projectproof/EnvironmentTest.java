@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * @author antoniomalvagomes
  */
 public class EnvironmentTest {
-    
+
     public EnvironmentTest() {
     }
 
@@ -28,11 +28,11 @@ public class EnvironmentTest {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -96,16 +96,12 @@ public class EnvironmentTest {
         Environment instance = Environment.getInstance();
         ArrayList<Operation> expResult = new ArrayList<Operation>();
         expResult.add(new Operation("Operation Pop(x, y)",
-                    "requires GreaterThan(Length(x), Zero())",
-                    "	ensures  And(Equals(x, All_But_First(#x)), "
-                    + "Equals(y, First(#x)))"
-                    )
-                );
+                "requires GreaterThan(Length(x), Zero())",
+                "	ensures  And(Equals(x, All_But_First(#x)), "
+                + "Equals(y, First(#x)))"));
         expResult.add(new Operation("Operation Push(x, y)",
-                    "requires LessThan(Length(x), MaxDepth())",
-                    "ensures  Equals(y, Concatenate(MakeString(#x), #y))"
-                    )
-                );
+                "requires LessThan(Length(x), MaxDepth())",
+                "ensures  Equals(y, Concatenate(MakeString(#x), #y))"));
         ArrayList<Operation> result = instance.getOperations();
         assertEquals(expResult, result);
     }
@@ -121,12 +117,10 @@ public class EnvironmentTest {
         Environment instance = Environment.getInstance();
         ArrayList<Procedure> expResult = new ArrayList<Procedure>();
         expResult.add(new Procedure("Procedure ReplaceTop(a, b)",
-                    "requires GreaterThan(Length(a), Zero())",
-                    "ensures  Equals(a,"
-                    + " Concatenate(MakeString(b),"
-                    + " All_But_First(a)))"
-                    )
-                );
+                "requires GreaterThan(Length(a), Zero())",
+                "ensures  Equals(a,"
+                + " Concatenate(MakeString(b),"
+                + " All_But_First(a)))"));
         ArrayList<Procedure> result = instance.getProcedures();
         assertEquals(expResult, result);
     }
@@ -147,39 +141,37 @@ public class EnvironmentTest {
     /**
      * Test of searchEnvironmentOps method, of class Environment.
      */
+    @Test
     public void testSearchEnvironmentOps() {
         System.out.println("searchEnvironmentOps");
         String fp = "Project2Input.txt";
         Environment.setFilePath(fp);
         Environment instance = Environment.getInstance();
         Expression searchOperation = new Expression(
-                "Operation Pop(x, y)"
-                );
+                "Pop(x, y)");
         Operation result = instance.searchEnvironmentOps(searchOperation);
         assertNotNull(result);
         searchOperation = new Expression(
-                "Operation PurplePeople(x, y)"
-                );
+                "PurplePeople(x, y)");
         result = instance.searchEnvironmentOps(searchOperation);
-        assertEquals(null, result);
+        assertEquals(true, result==null);
     }
 
     /**
      * Test of searchEnvironmentProcs method, of class Environment.
      */
+    @Test
     public void testSearchEnvironmentProcs() {
         System.out.println("searchEnvironmentProcs");
         String fp = "Project2Input.txt";
         Environment.setFilePath(fp);
         Environment instance = Environment.getInstance();
         Expression searchProcess = new Expression(
-                "Operation Pop(x, y)"
-                );
+                "ReplaceTop(x, y)");
         Operation result = instance.searchEnvironmentProcs(searchProcess);
         assertNotNull(result);
         searchProcess = new Expression(
-                "Operation PurplePeople(x, y)"
-                );
+                "PurplePeople(x, y)");
         result = instance.searchEnvironmentProcs(searchProcess);
         assertEquals(null, result);
     }
@@ -187,19 +179,18 @@ public class EnvironmentTest {
     /**
      * Test of searchEnvironmentDefs method, of class Environment.
      */
+    @Test
     public void testSearchEnvironmentDefs() {
         System.out.println("searchEnvironmentDefs");
         String fp = "Project2Input.txt";
         Environment.setFilePath(fp);
         Environment instance = Environment.getInstance();
         Expression searchDefinition = new Expression(
-                "Operation Pop(x, y)"
-                );
+                "Zero()");
         Definition result = instance.searchEnvironmentDefs(searchDefinition);
         assertNotNull(result);
         searchDefinition = new Expression(
-                "Operation PurplePeople(x, y)"
-                );
+                "PurplePeople(x, y)");
         result = instance.searchEnvironmentDefs(searchDefinition);
         assertEquals(null, result);
     }

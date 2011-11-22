@@ -4,20 +4,29 @@
  */
 package projectproof;
 
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Main driver for ProjectProof. Takes input from a file specified at run-time.
- * Requires and ensures clauses from input file must span only one line.
+ * <p>Main driver for {@code ProjectProof}. Takes input from a file specified at
+ * runtime from the file chooser. The input file may include {@link
+ * Definition}s, {@link Operation}s, and {@link Procedure}s in the form
+ * specified in their respective classes. Requires and ensures clauses from the
+ * input file must span only one line.</p>
  *
  */
 public class ProjectProof {
 
     /**
-     * Opens the file specified and adds it to the Environment.
-     * Prints a proof table of each procedure found in the Environment.
+     * <p>Opens the file specified and adds it to the {@code Environment}.
+     * Prints a proof table of each <i>procedure</i> found in the
+	 * {@code Environment}.</p>
      */
     public static void main(String[] args) {
         if(args.length!=1)

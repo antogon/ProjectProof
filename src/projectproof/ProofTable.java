@@ -16,12 +16,12 @@ public class ProofTable {
     private Procedure myProcedure;
 
     /**
-* <p>Creates a new {@code ProofTable} for the {@link Procedure} passed in
-* with respect to the {@link Definition}s and {@link Operation}s described
-* by the current {@link Environment}.</p>
-* @param inProcedure the {@code Procedure} that this {@code ProofTable}
-* is to attempt to prove.
-*/
+    * <p>Creates a new {@code ProofTable} for the {@link Procedure} passed in
+    * with respect to the {@link Definition}s and {@link Operation}s described
+    * by the current {@link Environment}.</p>
+    * @param inProcedure the {@code Procedure} that this {@code ProofTable}
+    * is to attempt to prove.
+    */
     public ProofTable(Procedure inProcedure) throws Exception
     {
         myProcedure = inProcedure;
@@ -147,10 +147,10 @@ public class ProofTable {
     }
 
     /**
-* <p>Returns a {@code String} representation of this ProofTable and all of
-* the {@code ProofTableStates} within it.</p>
-* @return a {@code String} representing this {@code ProofTable} in full.
-*/
+    * <p>Returns a {@code String} representation of this ProofTable and all of
+    * the {@code ProofTableStates} within it.</p>
+    * @return a {@code String} representing this {@code ProofTable} in full.
+    */
     @Override
     public String toString()
     {
