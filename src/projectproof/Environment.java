@@ -178,7 +178,6 @@ public class Environment {
             System.err.println("Implicit declaration of operation: \n\t"+
                     ex.getName()+"\nNo suggestions available.");
         }
-        System.exit(1);
         return null;
     }
 
@@ -235,7 +234,6 @@ public class Environment {
             System.err.println("Implicit declaration of definition: \n\t"+
                     ex.getName()+"\nNo suggestions available.");
         }
-        System.exit(1);
         return null;
     }
 }

@@ -143,4 +143,64 @@ public class EnvironmentTest {
         String result = instance.getFilePath();
         assertEquals(fp, result);
     }
+
+    /**
+     * Test of searchEnvironmentOps method, of class Environment.
+     */
+    public void testSearchEnvironmentOps() {
+        System.out.println("searchEnvironmentOps");
+        String fp = "Project2Input.txt";
+        Environment.setFilePath(fp);
+        Environment instance = Environment.getInstance();
+        Expression searchOperation = new Expression(
+                "Operation Pop(x, y)"
+                );
+        Operation result = instance.searchEnvironmentOps(searchOperation);
+        assertNotNull(result);
+        searchOperation = new Expression(
+                "Operation PurplePeople(x, y)"
+                );
+        result = instance.searchEnvironmentOps(searchOperation);
+        assertEquals(null, result);
+    }
+
+    /**
+     * Test of searchEnvironmentProcs method, of class Environment.
+     */
+    public void testSearchEnvironmentProcs() {
+        System.out.println("searchEnvironmentProcs");
+        String fp = "Project2Input.txt";
+        Environment.setFilePath(fp);
+        Environment instance = Environment.getInstance();
+        Expression searchProcess = new Expression(
+                "Operation Pop(x, y)"
+                );
+        Operation result = instance.searchEnvironmentProcs(searchProcess);
+        assertNotNull(result);
+        searchProcess = new Expression(
+                "Operation PurplePeople(x, y)"
+                );
+        result = instance.searchEnvironmentProcs(searchProcess);
+        assertEquals(null, result);
+    }
+
+    /**
+     * Test of searchEnvironmentDefs method, of class Environment.
+     */
+    public void testSearchEnvironmentDefs() {
+        System.out.println("searchEnvironmentDefs");
+        String fp = "Project2Input.txt";
+        Environment.setFilePath(fp);
+        Environment instance = Environment.getInstance();
+        Expression searchDefinition = new Expression(
+                "Operation Pop(x, y)"
+                );
+        Definition result = instance.searchEnvironmentDefs(searchDefinition);
+        assertNotNull(result);
+        searchDefinition = new Expression(
+                "Operation PurplePeople(x, y)"
+                );
+        result = instance.searchEnvironmentDefs(searchDefinition);
+        assertEquals(null, result);
+    }
 }

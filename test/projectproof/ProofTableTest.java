@@ -18,12 +18,8 @@ import static org.junit.Assert.*;
  */
 public class ProofTableTest {
     Environment myE;
-    ProofTable myTest;
 
     public ProofTableTest() {
-        Environment.setFilePath("Project2Input.txt");
-        myE = Environment.getInstance();
-        myTest = new ProofTable(myE.getProcedures().get(0));
     }
 
     @BeforeClass
@@ -36,6 +32,8 @@ public class ProofTableTest {
 
     @Before
     public void setUp() {
+        Environment.setFilePath("Project2Input.txt");
+        myE = Environment.getInstance();
     }
 
     @After
@@ -67,6 +65,12 @@ public class ProofTableTest {
                 "Equals(b2, Concatenate(MakeString(a1), b1))\n\n" +
                 "Confirm:\n" +
                 "Equals(a2, Concatenate(MakeString(b2), All_But_First(a2)))";
+        ProofTable myTest = null;
+        try {
+            myTest = new ProofTable(myE.getProcedures().get(0));
+        } catch (Exception ex) {
+            fail("ProofTable failed to check for bad input.");
+        }
         String result = myTest.toString();
         assertEquals(expResult, result);
     }
