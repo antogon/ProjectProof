@@ -143,4 +143,55 @@ public class EnvironmentTest {
         String result = instance.getFilePath();
         assertEquals(fp, result);
     }
+
+    /**
+     * Test of searchEnvironmentOps method, of class Environment.
+     */
+    @Test
+    public void testSearchEnvironmentOps() {
+        System.out.println("searchEnvironmentOps");
+        String fp = "Project2Input.txt";
+        Environment.setFilePath(fp);
+        Environment instance = Environment.getInstance();
+        Expression searchOperation = new Expression(
+                "Operation Pop(x, y)"
+                );
+        Operation result = instance.searchEnvironmentOps(searchOperation);
+        assertNotNull(result);
+        searchOperation = new Expression(
+                "Operation PurplePeople(x, y)"
+                );
+        result = instance.searchEnvironmentOps(searchOperation);
+        assertEquals(null, result);
+    }
+
+    /**
+     * Test of searchEnvironmentProcs method, of class Environment.
+     */
+    @Test
+    public void testSearchEnvironmentProcs() {
+        System.out.println("searchEnvironmentProcs");
+        Expression searchProcedure = null;
+        Environment instance = null;
+        Procedure expResult = null;
+        Procedure result = instance.searchEnvironmentProcs(searchProcedure);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of searchEnvironmentDefs method, of class Environment.
+     */
+    @Test
+    public void testSearchEnvironmentDefs() {
+        System.out.println("searchEnvironmentDefs");
+        Expression searchDefinition = null;
+        Environment instance = null;
+        Definition expResult = null;
+        Definition result = instance.searchEnvironmentDefs(searchDefinition);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 }

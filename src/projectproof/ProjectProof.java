@@ -5,6 +5,8 @@
 package projectproof;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Main driver for ProjectProof. Takes input from a file specified at run-time.
@@ -29,8 +31,13 @@ public class ProjectProof {
         Environment mainEnv = Environment.getInstance();
         ArrayList<Procedure> pList = mainEnv.getProcedures();
         for(Procedure p : pList){
-            ProofTable table = new ProofTable(p);
-            System.out.println(table);
+            try {
+                ProofTable table = new ProofTable(p);
+                System.out.println(table);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                break;
+            }
         }
     }
 }

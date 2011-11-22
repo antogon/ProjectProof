@@ -177,7 +177,6 @@ public class Environment {
             System.err.println("Implicit declaration of operation: \n\t"+
                     searchOperation.getName()+"\nNo suggestions available.");
         }
-        System.exit(1);
         return null;
     }
 

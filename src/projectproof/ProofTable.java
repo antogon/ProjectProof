@@ -22,7 +22,7 @@ public class ProofTable {
      * @param inProcedure the {@code Procedure} that this {@code ProofTable}
 	 * is to attempt to prove.
      */
-    public ProofTable(Procedure inProcedure)
+    public ProofTable(Procedure inProcedure) throws Exception
     {
         myProcedure = inProcedure;
         myStates = new ArrayList<ProofTableState>();
