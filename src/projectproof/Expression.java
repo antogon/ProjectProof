@@ -164,6 +164,10 @@ public class Expression {
         return retVal;
     }
 
+    /**
+     * Returns if this expression is a variable, like x or y.
+     * @return True if this is a variable, false otherwise.
+     */
     public boolean isVariable()
     {
         return isVariable;

@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *
- * @author antoniomalvagomes
+ * Represents a proof table, which is a list of <code>ProofTableState</code>
+ * generated from a procedure, <code>myProcedure</code>
  */
 public class ProofTable {
     ArrayList<ProofTableState> myStates;

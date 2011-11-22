@@ -5,20 +5,23 @@
 package projectproof;
 
 /**
+ * Main driver for ProjectProof. Takes input from a file specified at run-time.
+ * Requires and ensures clauses from input file must span only one line.
  *
- * @author antoniomalvagomes
  */
 public class ProjectProof {
 
     /**
-     * @param args the command line arguments
+     * Opens the file specified and adds it to the Environment.
+     * Prints a proof table of each procedure found in the Environment.
      */
     public static void main(String[] args) {
         String filename = "Project2Input.txt";
         Environment.setFilePath(filename);
         Environment mainEnv = Environment.getInstance();
-        System.out.println(mainEnv.getDefinitions());
-        System.out.println(mainEnv.getOperations());
-        System.out.println(mainEnv.getProcedures());
+        for(Procedure p : mainEnv.getProcedures()){
+            ProofTable table = new ProofTable(p);
+            System.out.println(table);
+        }
     }
 }
