@@ -17,11 +17,11 @@ import java.util.Scanner;
  */
 public class Environment {
 
-    private static Environment myInstance;
+    private static Environment myInstance = null;
     private static String myFilePath;
-    public ArrayList<Definition> myDefinitions;
-    public ArrayList<Operation> myOperations;
-    public ArrayList<Procedure> myProcedures;
+    private ArrayList<Definition> myDefinitions;
+    private ArrayList<Operation> myOperations;
+    private ArrayList<Procedure> myProcedures;
 
     /**
      * <p>A private constructor for this {@code Singleton} class.
@@ -148,27 +148,44 @@ public class Environment {
 
     /**
      * <p>Searches this Environment's recognized operations for one that
-     *  matches the passed Expression in both name and argument length.</p>
+     *  matches the passed Expression in both name and argument length.
+     * If no such Operation is found, null is returned.</p>
      * @param ex an Expression for which the Environment will be searched
      * @return an Operation with name and argument equivalent to <code>ex</code>
      */
     public Operation searchEnvironmentOps(Expression ex)
     {
+        Operation similar = null;
         for(Operation o : myOperations)
         {
-            if(o.getName().compareTo(ex.getName())==0 &&
-                    o.getArgs().size()==ex.getArgs().size()
-                    )
+            if(o.getName().compareTo(ex.getName())==0)
             {
-                return o;
+                similar = o;
+                if(o.getArgs().size()==ex.getArgs().size())
+                {
+                    return o;
+                }
             }
         }
+        if(similar!=null)
+        {
+            System.err.println("Implicit declaration of operation: \n\t"+
+                    ex.getName()+"\nFound operation with different arguments:" +
+                    "\n\t"+similar);
+        }
+        else
+        {
+            System.err.println("Implicit declaration of operation: \n\t"+
+                    ex.getName()+"\nNo suggestions available.");
+        }
+        System.exit(1);
         return null;
     }
 
     /**
      * <p>Searches this Environment's recognized procedures for one that
-     *  matches the passed Expression in both name and argument length.</p>
+     *  matches the passed Expression in both name and argument length.
+     * If no such Procedure is found, null is returned.</p>
      * @param ex an Expression for which the Environment will be searched
      * @return a Procedure with name and argument equivalent to <code>ex</code>
      */
@@ -188,21 +205,37 @@ public class Environment {
 
     /**
      * <p>Searches this Environment's recognized definitions for one that
-     *  matches the passed Expression in both name and argument length.</p>
+     *  matches the passed Expression in both name and argument length.
+     * If no such Definition is found, null is returned.</p>
      * @param ex an Expression for which the Environment will be searched
      * @return a Definition with name and argument equivalent to <code>ex</code>
      */
     public Definition searchEnvironmentDefs(Expression ex)
     {
+        Definition similar = null;
         for(Definition o : myDefinitions)
         {
-            if(o.getName().compareTo(ex.getName())==0 &&
-                    o.getArgs().size()==ex.getArgs().size()
-                    )
+            if(o.getName().compareTo(ex.getName())==0)
             {
-                return o;
+                similar = o;
+                if(o.getArgs().size()==ex.getArgs().size())
+                {
+                    return o;
+                }
             }
         }
+        if(similar!=null)
+        {
+            System.err.println("Implicit declaration of definition: \n\t"+
+                    ex.getName()+"\nFound definition with different arguments:" +
+                    "\n\t"+similar);
+        }
+        else
+        {
+            System.err.println("Implicit declaration of definition: \n\t"+
+                    ex.getName()+"\nNo suggestions available.");
+        }
+        System.exit(1);
         return null;
     }
 }

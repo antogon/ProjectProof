@@ -4,6 +4,8 @@
  */
 package projectproof;
 
+import java.util.ArrayList;
+
 /**
  * Main driver for ProjectProof. Takes input from a file specified at run-time.
  * Requires and ensures clauses from input file must span only one line.
@@ -25,7 +27,8 @@ public class ProjectProof {
         String filename = args[0];
         Environment.setFilePath(filename);
         Environment mainEnv = Environment.getInstance();
-        for(Procedure p : mainEnv.getProcedures()){
+        ArrayList<Procedure> pList = mainEnv.getProcedures();
+        for(Procedure p : pList){
             ProofTable table = new ProofTable(p);
             System.out.println(table);
         }
