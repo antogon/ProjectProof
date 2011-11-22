@@ -4,6 +4,10 @@
  */
 package projectproof;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -32,6 +36,7 @@ public class OperationTest {
     
     @Before
     public void setUp() {
+        Environment.setFilePath("Project2Input.txt");
         myTest = new Operation("Operation Pop(x, y)",
                 "requires GreaterThan(Length(x), Zero())",
                 "ensures  And(Equals(x, All_But_First(#x)),"

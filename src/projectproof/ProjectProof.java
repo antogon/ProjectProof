@@ -4,10 +4,12 @@
  */
 package projectproof;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import java.util.ArrayList;
 
 /**
  * <p>Main driver for {@code ProjectProof}. Takes input from a file specified at
@@ -25,13 +27,6 @@ public class ProjectProof {
 	 * {@code Environment}.</p>
      */
     public static void main(String[] args) {
-       /* if(args.length!=1)
-        {
-            System.err.println("Not enough parameters!\n\t" +
-                    "usage: java ProjectProof [formal specification file.]");
-            System.exit(1);
-        }
-		*/
 
 		try{
 			File inputFile = null;
@@ -47,23 +42,22 @@ public class ProjectProof {
 					frame.dispose();
 			if(inputFile != null){
 				String filename = inputFile.getAbsolutePath();
-				Environment.setFilePath(filename);
+				Environment.setFile(inputFile);
 				Environment mainEnv = Environment.getInstance();
-				for(Procedure p : mainEnv.getProcedures()){
+				ArrayList<Procedure> pList = mainEnv.getProcedures();
+				for(Procedure p : pList){
 					ProofTable table = new ProofTable(p);
 					System.out.println(table);
 				}
 			}
+			frame.dispose();
 		}
 		catch (NullPointerException npe) {
-			System.err.println("There was an error with the file path.");
+			System.err.println("File error: " + npe.getMessage());
 		}
 		catch (IllegalArgumentException iae) {
-			System.err.println("There was an error with the file path.");
+			System.err.println("File error: " + iae.getMessage());
 		}
 
-        // String filename = args[0];
-
-        }
-
+	}
 }

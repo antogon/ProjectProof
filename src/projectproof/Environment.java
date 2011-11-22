@@ -17,7 +17,8 @@ import java.util.Scanner;
  */
 public class Environment {
 
-    private static Environment myInstance;
+    private static Environment myInstance = null;
+	private static File myFile;
     private static String myFilePath;
     private ArrayList<Definition> myDefinitions;
     private ArrayList<Operation> myOperations;
@@ -28,18 +29,18 @@ public class Environment {
      * Sets the internal member variable to an instance of this class.
      * Requires that the {@code setFilePath} function be called beforehand in
 	 * order to set the file to be read in.</p>
-     * @param filePath the path to the formal specification file to be processed
+     * @param i the path to the formal specification file to be processed
      */
-    private Environment(String filePath)
-    {
-        myFilePath = filePath;
+    private Environment(File inputFile)
+	{
+		myFile = inputFile;
+        myFilePath = myFile.getAbsolutePath();
         myDefinitions = new ArrayList<Definition>();
         myOperations = new ArrayList<Operation>();
         myProcedures = new ArrayList<Procedure>();
-        File filePointer = new File(filePath);
         try
         {
-            Scanner fileScanner = new Scanner(filePointer);
+            Scanner fileScanner = new Scanner(myFile);
             String inputLine;
             while(fileScanner.hasNextLine())
             {
@@ -79,7 +80,7 @@ public class Environment {
         }
         catch(FileNotFoundException e)
         {
-            System.out.println("The input file you requested was not found.");
+            System.out.println("Input file not found: " + myFilePath);
         }
     }
 
@@ -92,19 +93,18 @@ public class Environment {
     {
         if(myInstance == null)
         {
-            myInstance = new Environment(myFilePath);
+            myInstance = new Environment(myFile);
         }
         return myInstance;
     }
 
     /**
-     * <p>Sets the path for the formal specification file to be read in and
-	 * processed.</p>
-     * @param inFilePath the path to the formal specification file to be
-	 * processed.
+     * <p>Sets the input file for this {@code Environment}.</p>
+     * @param inFile the {@code File} object for the formal specification file.
      */
-    public static void setFilePath(String inFilePath){
-        myFilePath = inFilePath;
+    public static void setFile(File inFile){
+        myFile = inFile;
+		myFilePath = inFile.getAbsolutePath();
     }
 
     /**
@@ -154,15 +154,30 @@ public class Environment {
      */
     public Operation searchEnvironmentOps(Expression searchOperation)
     {
+        Operation similar = null;
         for(Operation o : myOperations)
         {
-            if(o.getName().compareTo(searchOperation.getName())==0 &&
-                    o.getArgs().size()==searchOperation.getArgs().size()
-                    )
+            if(o.getName().compareTo(searchOperation.getName())==0)
             {
-                return o;
+                similar = o;
+                if(o.getArgs().size()==searchOperation.getArgs().size())
+                {
+                    return o;
+                }
             }
         }
+        if(similar!=null)
+        {
+            System.err.println("Implicit declaration of operation: \n\t"+
+                    searchOperation.getName()+"\nFound operation with different arguments:" +
+                    "\n\t"+similar);
+        }
+        else
+        {
+            System.err.println("Implicit declaration of operation: \n\t"+
+                    searchOperation.getName()+"\nNo suggestions available.");
+        }
+        System.exit(1);
         return null;
     }
 
@@ -194,15 +209,30 @@ public class Environment {
      */
     public Definition searchEnvironmentDefs(Expression searchDefinition)
     {
+        Definition similar = null;
         for(Definition o : myDefinitions)
         {
-            if(o.getName().compareTo(searchDefinition.getName())==0 &&
-                    o.getArgs().size()==searchDefinition.getArgs().size()
-                    )
+            if(o.getName().compareTo(searchDefinition.getName())==0)
             {
-                return o;
+                similar = o;
+                if(o.getArgs().size()==searchDefinition.getArgs().size())
+                {
+                    return o;
+                }
             }
         }
+        if(similar!=null)
+        {
+            System.err.println("Implicit declaration of definition: \n\t"+
+                    searchDefinition.getName()+"\nFound definition with different arguments:" +
+                    "\n\t"+similar);
+        }
+        else
+        {
+            System.err.println("Implicit declaration of definition: \n\t"+
+                    searchDefinition.getName()+"\nNo suggestions available.");
+        }
+        System.exit(1);
         return null;
     }
 }
