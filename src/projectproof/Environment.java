@@ -18,6 +18,7 @@ import java.util.Scanner;
 public class Environment {
 
     private static Environment myInstance = null;
+	private static File myFile;
     private static String myFilePath;
     private ArrayList<Definition> myDefinitions;
     private ArrayList<Operation> myOperations;
@@ -28,18 +29,18 @@ public class Environment {
      * Sets the internal member variable to an instance of this class.
      * Requires that the {@code setFilePath} function be called beforehand in
 	 * order to set the file to be read in.</p>
-     * @param filePath the path to the formal specification file to be processed
+     * @param i the path to the formal specification file to be processed
      */
-    private Environment(String filePath)
-    {
-        myFilePath = filePath;
+    private Environment(File inputFile)
+	{
+		myFile = inputFile;
+        myFilePath = myFile.getAbsolutePath();
         myDefinitions = new ArrayList<Definition>();
         myOperations = new ArrayList<Operation>();
         myProcedures = new ArrayList<Procedure>();
-        File filePointer = new File(filePath);
         try
         {
-            Scanner fileScanner = new Scanner(filePointer);
+            Scanner fileScanner = new Scanner(myFile);
             String inputLine;
             while(fileScanner.hasNextLine())
             {
@@ -79,7 +80,7 @@ public class Environment {
         }
         catch(FileNotFoundException e)
         {
-            System.out.println("The input file you requested was not found.");
+            System.out.println("Input file not found: " + myFilePath);
         }
     }
 
@@ -92,19 +93,18 @@ public class Environment {
     {
         if(myInstance == null)
         {
-            myInstance = new Environment(myFilePath);
+            myInstance = new Environment(myFile);
         }
         return myInstance;
     }
 
     /**
-     * <p>Sets the path for the formal specification file to be read in and
-	 * processed.</p>
-     * @param inFilePath the path to the formal specification file to be
-	 * processed.
+     * <p>Sets the input file for this {@code Environment}.</p>
+     * @param inFile the {@code File} object for the formal specification file.
      */
-    public static void setFilePath(String inFilePath){
-        myFilePath = inFilePath;
+    public static void setFile(File inFile){
+        myFile = inFile;
+		myFilePath = inFile.getAbsolutePath();
     }
 
     /**
