@@ -8,24 +8,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Represents a proof table, which is a list of <code>ProofTableState</code>
- * generated from a procedure, <code>myProcedure</code>
+ * Represents a <i>proof table</i>, which is a list of {@code ProofTableState}
+ * generated from a {@link Procedure}.
  */
 public class ProofTable {
-    ArrayList<ProofTableState> myStates;
-    Procedure myProcedure;
+    private ArrayList<ProofTableState> myStates;
+    private Procedure myProcedure;
 
     /**
-     * <p>Creates a new ProofTable for the Procedure passed in with respect to
-     * the Definitions and Operations described by the current Environment.</p>
-     * @param p the Procedure that this ProofTable attempts to prove
+     * <p>Creates a new {@code ProofTable} for the {@link Procedure} passed in
+	 * with respect to the {@link Definition}s and {@link Operation}s described
+	 * by the current {@link Environment}.</p>
+     * @param inProcedure the {@code Procedure} that this {@code ProofTable}
+	 * is to attempt to prove.
      */
-    public ProofTable(Procedure p)
+    public ProofTable(Procedure inProcedure)
     {
-        myProcedure = p;
+        myProcedure = inProcedure;
         myStates = new ArrayList<ProofTableState>();
         HashMap<String, String> subMap = new HashMap<String, String>();
-        ArrayList<Expression> instructions = p.getInstructions();
+        ArrayList<Expression> instructions = inProcedure.getInstructions();
         Environment e = Environment.getInstance();
         for(int sC = 0; sC<=instructions.size(); sC++)
         {
@@ -39,7 +41,7 @@ public class ProofTable {
                 Operation op = e.searchEnvironmentOps(in);
                 ArrayList<String> values = new ArrayList<String>();
                 ArrayList<String> keys = new ArrayList<String>(op.getArgs());
-                keys.addAll(p.getArgs());
+                keys.addAll(inProcedure.getArgs());
                 for(int mapNdx = 0; mapNdx<keys.size(); mapNdx++)
                 {
                     values.add(in.getArgs()
@@ -57,7 +59,7 @@ public class ProofTable {
                             .toString()+(sC-1)
                             );
                 }
-                assumes = p.getRequires().substitute(subMap);
+                assumes = inProcedure.getRequires().substitute(subMap);
                 confirms = op.getRequires().substitute(subMap);
             }
             else if(sC==instructions.size())
@@ -66,7 +68,7 @@ public class ProofTable {
                 Operation op = e.searchEnvironmentOps(in);
                 ArrayList<String> values = new ArrayList<String>();
                 ArrayList<String> keys = new ArrayList<String>(op.getArgs());
-                keys.addAll(p.getArgs());
+                keys.addAll(inProcedure.getArgs());
                 for(int mapNdx = 0; mapNdx<keys.size(); mapNdx++)
                 {
                     values.add(in.getArgs()
@@ -83,7 +85,7 @@ public class ProofTable {
                 }
                 assumes = e.searchEnvironmentOps(instructions.get(sC-1))
                         .getEnsures().substitute(subMap);
-                confirms = p.getEnsures().substitute(subMap);
+                confirms = inProcedure.getEnsures().substitute(subMap);
             }
             else
             {
@@ -109,9 +111,9 @@ public class ProofTable {
     }
 
     /**
-     * <p>Returns a String representation of this ProofTable and all of the
-     * ProofTableStates within it.</p>
-     * @return a String representing this ProofTable in full
+     * <p>Returns a {@code String} representation of this ProofTable and all of
+     * the {@code ProofTableStates} within it.</p>
+     * @return a {@code String} representing this {@code ProofTable} in full.
      */
     @Override
     public String toString()
@@ -123,5 +125,5 @@ public class ProofTable {
         }
         return retVal.trim();
     }
-    
+
 }

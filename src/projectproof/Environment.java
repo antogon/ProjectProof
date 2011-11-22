@@ -148,20 +148,19 @@ public class Environment {
 
     /**
      * <p>Searches this Environment's recognized operations for one that
-     *  matches the passed Expression in both name and argument length.
-     * If no such Operation is found, null is returned.</p>
-     * @param ex an Expression for which the Environment will be searched
+     *  matches the passed Expression in both name and argument length.</p>
+     * @param searchOperation an Expression for which the Environment will be searched
      * @return an Operation with name and argument equivalent to <code>ex</code>
      */
-    public Operation searchEnvironmentOps(Expression ex)
+    public Operation searchEnvironmentOps(Expression searchOperation)
     {
         Operation similar = null;
         for(Operation o : myOperations)
         {
-            if(o.getName().compareTo(ex.getName())==0)
+            if(o.getName().compareTo(searchOperation.getName())==0)
             {
                 similar = o;
-                if(o.getArgs().size()==ex.getArgs().size())
+                if(o.getArgs().size()==searchOperation.getArgs().size())
                 {
                     return o;
                 }
@@ -170,13 +169,13 @@ public class Environment {
         if(similar!=null)
         {
             System.err.println("Implicit declaration of operation: \n\t"+
-                    ex.getName()+"\nFound operation with different arguments:" +
+                    searchOperation.getName()+"\nFound operation with different arguments:" +
                     "\n\t"+similar);
         }
         else
         {
             System.err.println("Implicit declaration of operation: \n\t"+
-                    ex.getName()+"\nNo suggestions available.");
+                    searchOperation.getName()+"\nNo suggestions available.");
         }
         System.exit(1);
         return null;
@@ -184,17 +183,16 @@ public class Environment {
 
     /**
      * <p>Searches this Environment's recognized procedures for one that
-     *  matches the passed Expression in both name and argument length.
-     * If no such Procedure is found, null is returned.</p>
-     * @param ex an Expression for which the Environment will be searched
+     *  matches the passed Expression in both name and argument length.</p>
+     * @param searchProcedure an Expression for which the Environment will be searched
      * @return a Procedure with name and argument equivalent to <code>ex</code>
      */
-    public Procedure searchEnvironmentProcs(Expression ex)
+    public Procedure searchEnvironmentProcs(Expression searchProcedure)
     {
         for(Procedure o : myProcedures)
         {
-            if(o.getName().compareTo(ex.getName())==0 &&
-                    o.getArgs().size()==ex.getArgs().size()
+            if(o.getName().compareTo(searchProcedure.getName())==0 &&
+                    o.getArgs().size()==searchProcedure.getArgs().size()
                     )
             {
                 return o;
@@ -205,20 +203,19 @@ public class Environment {
 
     /**
      * <p>Searches this Environment's recognized definitions for one that
-     *  matches the passed Expression in both name and argument length.
-     * If no such Definition is found, null is returned.</p>
-     * @param ex an Expression for which the Environment will be searched
+     *  matches the passed Expression in both name and argument length.</p>
+     * @param searchDefinition an Expression for which the Environment will be searched
      * @return a Definition with name and argument equivalent to <code>ex</code>
      */
-    public Definition searchEnvironmentDefs(Expression ex)
+    public Definition searchEnvironmentDefs(Expression searchDefinition)
     {
         Definition similar = null;
         for(Definition o : myDefinitions)
         {
-            if(o.getName().compareTo(ex.getName())==0)
+            if(o.getName().compareTo(searchDefinition.getName())==0)
             {
                 similar = o;
-                if(o.getArgs().size()==ex.getArgs().size())
+                if(o.getArgs().size()==searchDefinition.getArgs().size())
                 {
                     return o;
                 }
@@ -227,13 +224,13 @@ public class Environment {
         if(similar!=null)
         {
             System.err.println("Implicit declaration of definition: \n\t"+
-                    ex.getName()+"\nFound definition with different arguments:" +
+                    searchDefinition.getName()+"\nFound definition with different arguments:" +
                     "\n\t"+similar);
         }
         else
         {
             System.err.println("Implicit declaration of definition: \n\t"+
-                    ex.getName()+"\nNo suggestions available.");
+                    searchDefinition.getName()+"\nNo suggestions available.");
         }
         System.exit(1);
         return null;
