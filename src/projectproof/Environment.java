@@ -19,9 +19,9 @@ public class Environment {
 
     private static Environment myInstance;
     private static String myFilePath;
-    public ArrayList<Definition> myDefinitions;
-    public ArrayList<Operation> myOperations;
-    public ArrayList<Procedure> myProcedures;
+    private ArrayList<Definition> myDefinitions;
+    private ArrayList<Operation> myOperations;
+    private ArrayList<Procedure> myProcedures;
 
     /**
      * <p>A private constructor for this {@code Singleton} class.
@@ -149,15 +149,15 @@ public class Environment {
     /**
      * <p>Searches this Environment's recognized operations for one that
      *  matches the passed Expression in both name and argument length.</p>
-     * @param ex an Expression for which the Environment will be searched
+     * @param searchOperation an Expression for which the Environment will be searched
      * @return an Operation with name and argument equivalent to <code>ex</code>
      */
-    public Operation searchEnvironmentOps(Expression ex)
+    public Operation searchEnvironmentOps(Expression searchOperation)
     {
         for(Operation o : myOperations)
         {
-            if(o.getName().compareTo(ex.getName())==0 &&
-                    o.getArgs().size()==ex.getArgs().size()
+            if(o.getName().compareTo(searchOperation.getName())==0 &&
+                    o.getArgs().size()==searchOperation.getArgs().size()
                     )
             {
                 return o;
@@ -169,15 +169,15 @@ public class Environment {
     /**
      * <p>Searches this Environment's recognized procedures for one that
      *  matches the passed Expression in both name and argument length.</p>
-     * @param ex an Expression for which the Environment will be searched
+     * @param searchProcedure an Expression for which the Environment will be searched
      * @return a Procedure with name and argument equivalent to <code>ex</code>
      */
-    public Procedure searchEnvironmentProcs(Expression ex)
+    public Procedure searchEnvironmentProcs(Expression searchProcedure)
     {
         for(Procedure o : myProcedures)
         {
-            if(o.getName().compareTo(ex.getName())==0 &&
-                    o.getArgs().size()==ex.getArgs().size()
+            if(o.getName().compareTo(searchProcedure.getName())==0 &&
+                    o.getArgs().size()==searchProcedure.getArgs().size()
                     )
             {
                 return o;
@@ -189,15 +189,15 @@ public class Environment {
     /**
      * <p>Searches this Environment's recognized definitions for one that
      *  matches the passed Expression in both name and argument length.</p>
-     * @param ex an Expression for which the Environment will be searched
+     * @param searchDefinition an Expression for which the Environment will be searched
      * @return a Definition with name and argument equivalent to <code>ex</code>
      */
-    public Definition searchEnvironmentDefs(Expression ex)
+    public Definition searchEnvironmentDefs(Expression searchDefinition)
     {
         for(Definition o : myDefinitions)
         {
-            if(o.getName().compareTo(ex.getName())==0 &&
-                    o.getArgs().size()==ex.getArgs().size()
+            if(o.getName().compareTo(searchDefinition.getName())==0 &&
+                    o.getArgs().size()==searchDefinition.getArgs().size()
                     )
             {
                 return o;
