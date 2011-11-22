@@ -16,7 +16,13 @@ public class ProjectProof {
      * Prints a proof table of each procedure found in the Environment.
      */
     public static void main(String[] args) {
-        String filename = "Project2Input.txt";
+        if(args.length!=1)
+        {
+            System.err.println("Not enough parameters!\n\t" +
+                    "usage: java ProjectProof [formal specification file.]");
+            System.exit(1);
+        }
+        String filename = args[0];
         Environment.setFilePath(filename);
         Environment mainEnv = Environment.getInstance();
         for(Procedure p : mainEnv.getProcedures()){

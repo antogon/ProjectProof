@@ -80,12 +80,12 @@ public class OperationTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Operation instance = null;
-        String expResult = "";
-        String result = instance.toString();
+        String expResult = "Operation Pop(x, y)";
+        String result = myTest.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        expResult = "Operation Push(x, y)";
+        result = myTest1.toString();
+        assertEquals(expResult, result);
     }
 
     /**
