@@ -38,7 +38,17 @@ public class ProofTable {
             if(sC==0)
             {
                 Expression in = instructions.get(sC);
+                if(e.searchEnvironmentDefs(in)==null)
+                {
+                    throw new Exception("Implicit declaration" +
+                            " of definition:\n"+in.getName());
+                }
                 Operation op = e.searchEnvironmentOps(in);
+                if(op==null)
+                {
+                    throw new Exception("Implicit declaration" +
+                            " of operation:\n"+in.getName());
+                }
                 ArrayList<String> values = new ArrayList<String>();
                 ArrayList<String> keys = new ArrayList<String>(op.getArgs());
                 keys.addAll(inProcedure.getArgs());
@@ -65,7 +75,17 @@ public class ProofTable {
             else if(sC==instructions.size())
             {
                 Expression in = instructions.get(sC-1);
+                if(e.searchEnvironmentDefs(in)==null)
+                {
+                    throw new Exception("Implicit declaration" +
+                            " of definition:\n"+in.getName());
+                }
                 Operation op = e.searchEnvironmentOps(in);
+                if(op==null)
+                {
+                    throw new Exception("Implicit declaration" +
+                            " of operation:\n"+in.getName());
+                }
                 ArrayList<String> values = new ArrayList<String>();
                 ArrayList<String> keys = new ArrayList<String>(op.getArgs());
                 keys.addAll(inProcedure.getArgs());
@@ -90,7 +110,17 @@ public class ProofTable {
             else
             {
                 Expression in = instructions.get(sC-1);
+                if(e.searchEnvironmentDefs(in)==null)
+                {
+                    throw new Exception("Implicit declaration" +
+                            " of definition:\n"+in.getName());
+                }
                 Operation op = e.searchEnvironmentOps(in);
+                if(op==null)
+                {
+                    throw new Exception("Implicit declaration" +
+                            " of operation:\n"+in.getName());
+                }
                 ArrayList<String> values = new ArrayList<String>();
                 ArrayList<String> keys = new ArrayList<String>(op.getArgs());
                 for(int mapNdx = 0; mapNdx<keys.size(); mapNdx++)
