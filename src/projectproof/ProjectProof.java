@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * <p>Main driver for {@code ProjectProof}. Takes input from a file specified at
@@ -26,7 +28,7 @@ public class ProjectProof {
      * Prints a proof table of each <i>procedure</i> found in the
 	 * {@code Environment}.</p>
      */
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
 		try{
 			File inputFile = null;
@@ -57,6 +59,9 @@ public class ProjectProof {
 		}
 		catch (IllegalArgumentException iae) {
 			System.err.println("File error: " + iae.getMessage());
+		}
+		catch(Exception e){
+			System.err.println("Error: " + e.getMessage());
 		}
 
 	}
